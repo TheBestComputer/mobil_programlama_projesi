@@ -1,0 +1,43 @@
+plugins {
+    id "com.android.application"
+    // START: Firebase Configuration
+    id 'com.google.gms.google-services'  // Firebase yapılandırması için
+    // END: Firebase Configuration
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.deneme"  // Firebase ve uygulama adıyla uyumlu olmalı
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.deneme"  // Firebase Console'dan alınan ID ile uyumlu olmalı
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+        minSdkVersion = 23
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug  // Yayın için doğru imzalama yapılandırmasını kullanın
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
